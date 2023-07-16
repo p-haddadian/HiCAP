@@ -3,8 +3,7 @@ from torch_geometric.nn import GCNConv
 from torch_geometric.nn import GraphConv, TopKPooling
 from torch_geometric.nn import global_mean_pool as gap, global_max_pool as gmp
 import torch.nn.functional as F
-from layers import SAGPool
-from layers import AGPool
+from layers import HiCAP
 from layers import GNN
 from torch_geometric.utils import to_dense_adj
 
@@ -23,13 +22,13 @@ class Net(torch.nn.Module):
         
         self.conv1 = GCNConv(self.num_features, self.nhid)
         num_nodes = int(args.max_nodes * self.pooling_ratio)
-        self.pool1 = AGPool(self.nhid, num_nodes)
+        self.pool1 = HiCAP(self.nhid, num_nodes)
         self.conv2 = GCNConv(self.nhid, self.nhid)
         num_nodes = int(num_nodes * self.pooling_ratio)
-        self.pool2 = AGPool(self.nhid, num_nodes)
+        self.pool2 = HiCAP(self.nhid, num_nodes)
         self.conv3 = GCNConv(self.nhid, self.nhid)
         num_nodes = int(num_nodes * self.pooling_ratio)
-        self.pool3 = AGPool(self.nhid, self.num_nodes)
+        self.pool3 = HiCAP(self.nhid, self.num_nodes)
 
         self.lin1 = torch.nn.Linear(self.nhid * 2, self.nhid)
         self.lin2 = torch.nn.Linear(self.nhid, self.nhid//2)
