@@ -1,7 +1,7 @@
 
 # Pytorch implementation of Hierarchial Clustering-based Attention Pooling for Graph Representation Learning
 
-A novel method called HiCAP (Hierarchical Cluster-Based Attention Pooling) is proposed to address the limitations of existing graph pooling approaches. By combining the strengths of node clustering and node dropping techniques, HiCAP establishes a hierarchical framework. Initially, a soft cluster assignment matrix is learned through the application of a GNN. Subsequently, the matrix undergoes a transformation into a hard assignment by incorporating structural considerations. Attention-based scoring is subse- quently employed to select representative nodes within each cluster.
+A novel method called HiCAP (Hierarchical Cluster-Based Attention Pooling) is proposed to address the limitations of existing graph pooling approaches.
 
 ## Requirements
 
